@@ -10,19 +10,19 @@ import UploadRoute from "./Routes/UploadRoute.js";
 import ChatRoute from "./Routes/ChatRoute.js";
 import MessageRoute from "./Routes/MessageRoute.js";
 const app = express();
+dotenv.config().parsed;
 
 // Middleware
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-dotenv.config();
 
 // to serve images inside public folder
 app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
 mongoose
-  .connect(process.env.MONGO_DB, {
+  .connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
